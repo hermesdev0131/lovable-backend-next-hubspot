@@ -1,0 +1,30 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+		"baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "jsx": "preserve",
+    "incremental": true,
+		"module": "esnext",
+    "moduleResolution": "node",
+    "types": ["node"],
+		"allowJs": true,
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+, ".temp/index.tsx", ".temp/contact.ts"  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

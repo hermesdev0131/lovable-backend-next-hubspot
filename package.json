@@ -1,0 +1,37 @@
+{
+    "name": "contact-pipeline-haven-backend",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "prisma:generate": "prisma generate",
+        "prisma:migrate": "prisma migrate dev",
+        "prisma:studio": "prisma studio",
+        "prisma:seed": "ts-node --compiler-options {\\\"module\\\":\\\"CommonJS\\\"} prisma/seed.ts"
+    },
+    "dependencies": {
+        "@hubspot/api-client": "^9.0.0",
+        "@prisma/client": "^6.7.0",
+        "axios": "^1.4.0",
+        "bcryptjs": "^3.0.2",
+        "jsonwebtoken": "^9.0.2",
+        "next": "14.1.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "typescript": "^5.3.3"
+    },
+    "devDependencies": {
+        "@types/bcryptjs": "^2.4.6",
+        "@types/jsonwebtoken": "^9.0.9",
+        "@types/node": "^20.11.0",
+        "@types/react": "^18.2.0",
+        "@types/react-dom": "^18.2.0",
+        "eslint": "^8.56.0",
+        "eslint-config-next": "14.1.0",
+        "prisma": "^6.7.0",
+        "ts-node": "^10.9.2"
+    }
+}
