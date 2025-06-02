@@ -57,7 +57,7 @@ export const refreshHubspotToken = async () => {
     // Store the new access token
     updateAccessToken(result.accessToken, result.expiresIn);
     
-    console.log('HubSpot token refreshed successfully');
+    // console.log('HubSpot token refreshed successfully');
     
     return true;
   } catch (error) {

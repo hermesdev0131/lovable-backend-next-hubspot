@@ -55,9 +55,9 @@ export async function POST(request: NextRequest) {
     // Set expiration date based on rememberMe flag
     const expiresAt = new Date();
     if (rememberMe) {
-      expiresAt.setDate(expiresAt.getDate() + 30); // 30 days
+      expiresAt.setDate(expiresAt.getDate() + 10); // 30 days
     } else {
-      expiresAt.setDate(expiresAt.getDate() + 7); // 7 days
+      expiresAt.setDate(expiresAt.getDate() + 2); // 7 days
     }
 
     // Delete any existing refresh tokens for this user
@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
         id: user.id,
         name: user.name,
         email: user.email,
-        role: 'admin',
+        role: user.role,
       },
       token,
       refreshToken,

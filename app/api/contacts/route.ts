@@ -43,7 +43,7 @@ async function ensureCustomPropertiesExist(accessToken: string) {
     });
 
     if (res.status === 404) {
-      console.log(`Creating property: ${property.name}`);
+      // console.log(`Creating property: ${property.name}`);
       await fetch(`${HUBSPOT_BASE_URL}/crm/v3/properties/contacts`, {
         method: 'POST',
         headers: {
@@ -133,7 +133,9 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   try {
     const accessToken = process.env.HUBSPOT_ACCESS_TOKEN!;
-    console.log("contact");
+
+    // console.log("Fetching contacts...");
+    
     await ensureCustomPropertiesExist(accessToken);
 
     // Check if we're looking for a specific contact by ID

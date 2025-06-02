@@ -57,9 +57,9 @@ async function main() {
         },
       });
 
-      console.log(`Admin user "${ownerEmail}" created successfully.`);
+      // console.log(`Admin user "${ownerEmail}" created successfully.`);
     } else {
-      console.log(`Admin user "${ownerEmail}" already exists.`);
+      // console.log(`Admin user "${ownerEmail}" already exists.`);
     }
 
   } catch (error) {
