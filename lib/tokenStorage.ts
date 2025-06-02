@@ -28,7 +28,7 @@ export const storeTokens = (
     expiresAt
   };
   
-  console.log('Tokens stored successfully');
+  // console.log('Tokens stored successfully');
 };
 
 /**
@@ -58,7 +58,7 @@ export const updateAccessToken = (
     expiresAt
   };
   
-  console.log('Access token updated successfully');
+  // console.log('Access token updated successfully');
 };
 
 /**
@@ -78,5 +78,5 @@ export const isTokenExpired = (): boolean => {
  */
 export const clearTokens = (): void => {
   tokenStore = null;
-  console.log('Tokens cleared');
+  // console.log('Tokens cleared');
 };

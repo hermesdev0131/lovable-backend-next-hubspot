@@ -134,6 +134,7 @@ export async function PUT(request: NextRequest) {
 export async function GET(request: NextRequest) {
     
   try {
+    // console.log("Fetching teammembers...");
     const teamMembers = await prisma.user.findMany({
       select: {
         id: true,
@@ -171,8 +172,7 @@ export async function POST(request: NextRequest) {
       ));
     }
     
-    const password = email.split('@')[0]; // Placeholder – consider hashing password if needed
-    const hashedPassword = await bcrypt.hash(password, 10);
+    
     
     // Check for duplicate email
     const existingMember = await prisma.user.findUnique({
@@ -188,12 +188,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const password = email.split('@')[0]; // Placeholder – consider hashing password if needed
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const newTeamMember = await prisma.user.create({
       data: {
         name,
         email,
         role,
-        password,
+        password: hashedPassword,
         status: status || 'active',
       },
     });

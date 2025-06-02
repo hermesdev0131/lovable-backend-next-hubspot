@@ -54,7 +54,7 @@ function dealToHubspotProperties(dealData: any) {
 // Convert HubSpot deal to our deal object
 function hubspotToDeal(hubspotDeal: any) {
   const props = hubspotDeal.properties;
-  
+  // console.log(props);
   // Initialize deal with standard properties
   const deal = {
     id: hubspotDeal.id,
@@ -62,10 +62,10 @@ function hubspotToDeal(hubspotDeal: any) {
     name: props.dealname || '',
     value: parseFloat(props.amount) || 0,
     stage: reverseStageMapping[props.dealstage] || 'discovery',
-    closingDate: props.closedate ? new Date(parseInt(props.closedate)).toISOString() : new Date().toISOString(),
+    closingDate: props.closedate ? props.closedate : new Date().toISOString(),
     description: props.description || '',
-    createdAt: props.createdate ? new Date(parseInt(props.createdate)).toISOString() : new Date().toISOString(),
-    updatedAt: props.hs_lastmodifieddate ? new Date(parseInt(props.hs_lastmodifieddate)).toISOString() : new Date().toISOString(),
+    createdAt: props.createdate ? props.createdate : new Date().toISOString(),
+    updatedAt: props.hs_lastmodifieddate ? props.hs_lastmodifieddate : new Date().toISOString(),
     company: '',
     currency: 'USD',
     probability: 0,
@@ -98,7 +98,7 @@ function hubspotToDeal(hubspotDeal: any) {
       console.error('Error parsing additional data from description:', e);
     }
   }
-
+  // console.log(deal);
   return deal;
 }
 
@@ -181,7 +181,7 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   try {
     const accessToken = process.env.HUBSPOT_ACCESS_TOKEN!;
-    console.log("Fetching deals...");
+    // console.log("Fetching deals...");
 
     // Check if we're looking for a specific deal by ID
     const url = new URL(request.url);
@@ -216,7 +216,6 @@ export async function GET(request: NextRequest) {
 
       // Convert the HubSpot deal to our deal format
       const formattedDeal = hubspotToDeal(deal);
-
       return corsHeaders(NextResponse.json(formattedDeal));
     } else {
       // Fetch all deals
@@ -239,11 +238,12 @@ export async function GET(request: NextRequest) {
       });
 
       const data = await res.json();
+      // console.log(data);
       if (!res.ok) throw new Error(data.message || 'Failed to fetch deals');
 
       // Convert all HubSpot deals to our deal format
       const deals = data.results.map((deal: any) => hubspotToDeal(deal));
-
+      // console.log(deals);
       return corsHeaders(NextResponse.json(deals));
     }
   } catch (error: any) {
@@ -369,7 +369,7 @@ export async function DELETE(request: NextRequest) {
       return corsHeaders(NextResponse.json({ message: 'Server configuration error' }, { status: 500 }));
     }
     
-    console.log(`Attempting to delete deal with ID: ${dealId}`);
+    // console.log(`Attempting to delete deal with ID: ${dealId}`);
     
     // Use fetch to delete the deal in HubSpot
     const res = await fetch(`${HUBSPOT_BASE_URL}/crm/v3/objects/deals/${dealId}`, {

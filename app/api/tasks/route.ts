@@ -161,7 +161,7 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   try {
     const accessToken = process.env.HUBSPOT_ACCESS_TOKEN!;
-    console.log("Fetching tasks...");
+    // console.log("Fetching tasks...");
 
     // Check if we're looking for a specific task by ID
     const url = new URL(request.url);
